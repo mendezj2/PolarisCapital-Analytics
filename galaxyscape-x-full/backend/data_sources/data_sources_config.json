@@ -1,0 +1,99 @@
+{
+  "__comment": "Data Sources Configuration - Real Public Datasets Only",
+  "__warning": "Replace TODO_USER_* placeholders with actual public dataset URLs. Never hardcode API keys or credentials.",
+  
+  "astronomy": {
+    "default_source": "TODO_USER_GAIA_OR_KEPLER",
+    "raw_dir": "data/raw/astronomy",
+    "processed_dir": "data/processed/astronomy",
+    "sources": {
+      "gaia_dr3": {
+        "name": "Gaia DR3 Sample",
+        "url": "TODO_USER_GAIA_DR3_CSV_EXPORT_URL",
+        "description": "Gaia Data Release 3 stellar catalog - replace with actual export URL",
+        "format": "CSV",
+        "requires_auth": false,
+        "todo": "Get URL from https://gea.esac.esa.int/archive/ after creating export query"
+      },
+      "nasa_exoplanet": {
+        "name": "NASA Exoplanet Archive",
+        "url": "TODO_USER_EXOPLANET_ARCHIVE_CSV",
+        "description": "Confirmed exoplanets dataset - replace with actual CSV download URL",
+        "format": "CSV",
+        "requires_auth": false,
+        "todo": "Get URL from https://exoplanetarchive.ipac.caltech.edu/ export feature"
+      },
+      "kepler": {
+        "name": "Kepler Mission Data",
+        "url": "TODO_USER_KEPLER_DATA_URL",
+        "description": "Kepler light curve data - may require FITS to CSV conversion",
+        "format": "FITS/CSV",
+        "requires_auth": false,
+        "todo": "Download from https://archive.stsci.edu/kepler/, convert FITS if needed"
+      }
+    }
+  },
+  
+  "finance": {
+    "default_source": "TODO_USER_PUBLIC_MARKET_DATA",
+    "raw_dir": "data/raw/finance",
+    "processed_dir": "data/processed/finance",
+    "sources": {
+      "yahoo_finance": {
+        "name": "Yahoo Finance",
+        "url": "TODO_USER_YAHOO_FINANCE_CSV_OR_USE_YFINANCE_LIB",
+        "description": "Historical stock prices - use yfinance library or CSV export",
+        "format": "CSV",
+        "requires_auth": false,
+        "todo": "Use yfinance library: pip install yfinance, or get CSV export URL"
+      },
+      "fred": {
+        "name": "FRED Economic Data",
+        "url": "TODO_USER_FRED_DATASET_URL",
+        "description": "Federal Reserve economic indicators",
+        "format": "CSV",
+        "requires_auth": false,
+        "todo": "Get dataset URL from https://fred.stlouisfed.org/ after selecting series"
+      },
+      "alpha_vantage": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/query",
+        "description": "Free stock API - requires free API key",
+        "format": "JSON/CSV",
+        "requires_auth": true,
+        "api_key_env": "ALPHA_VANTAGE_API_KEY",
+        "todo": "Get free API key from https://www.alphavantage.co/support/#api-key, set as environment variable"
+      },
+      "kaggle": {
+        "name": "Kaggle Financial Datasets",
+        "url": "TODO_USER_KAGGLE_DATASET_URL",
+        "description": "Public financial datasets from Kaggle",
+        "format": "CSV",
+        "requires_auth": true,
+        "api_key_env": "KAGGLE_USERNAME",
+        "api_secret_env": "KAGGLE_KEY",
+        "todo": "Install kaggle CLI, authenticate, download dataset URL"
+      }
+    }
+  },
+  
+  "download_settings": {
+    "timeout_seconds": 300,
+    "max_file_size_mb": 1000,
+    "retry_attempts": 3,
+    "chunk_size_bytes": 8192,
+    "todo": "Adjust these settings based on your network and dataset sizes"
+  },
+  
+  "validation": {
+    "astronomy": {
+      "required_columns": ["ra", "dec"],
+      "todo": "Update required columns based on actual data source schema"
+    },
+    "finance": {
+      "required_columns": ["Date", "Close"],
+      "todo": "Update required columns based on actual data source schema"
+    }
+  }
+}
+

@@ -1,0 +1,31 @@
+{
+  "bootstrap_servers": ["localhost:9092"],
+  "topics": {
+    "raw_prices": {
+      "name": "prices.raw",
+      "partitions": 3,
+      "replication_factor": 1
+    },
+    "processed_risk": {
+      "name": "risk.processed",
+      "partitions": 3,
+      "replication_factor": 1
+    }
+  },
+  "consumer": {
+    "group_id": "galaxyscape-risk-consumer",
+    "auto_offset_reset": "earliest",
+    "enable_auto_commit": false
+  },
+  "producer": {
+    "acks": "all",
+    "retries": 3,
+    "compression_type": "snappy"
+  },
+  "streaming": {
+    "batch_size": 100,
+    "batch_timeout_ms": 1000,
+    "window_size_seconds": 60
+  }
+}
+

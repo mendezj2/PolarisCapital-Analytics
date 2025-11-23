@@ -1,0 +1,1531 @@
+/* Professional Dashboard Layout - Mission Control & Financial Terminal */
+
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+/* Professional Top Navigation */
+.top-nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+}
+
+body[data-mode="astronomy"] .top-nav {
+    border-bottom: 2px solid var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), var(--shadow-sm);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.app-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--accent-primary);
+    letter-spacing: -0.02em;
+    position: relative;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .app-title {
+    text-shadow: 0 0 20px var(--accent-glow);
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+body[data-mode="astronomy"] .app-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+body[data-mode="finance"] .app-title {
+    color: var(--accent-primary);
+    font-weight: 800;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.app-subtitle {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .app-subtitle {
+    color: var(--text-muted);
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.domain-toggle {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    padding: 0.375rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+body[data-mode="astronomy"] .domain-toggle {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.domain-btn {
+    padding: 0.625rem 2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.domain-btn img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+    margin-right: 6px;
+}
+
+body[data-mode="astronomy"] .domain-btn img {
+    filter: drop-shadow(0 0 3px var(--accent-glow)) brightness(1.1);
+}
+
+body[data-mode="finance"] .domain-btn img {
+    filter: drop-shadow(0 0 2px var(--accent-glow)) brightness(1.1);
+}
+
+.domain-btn:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+body[data-mode="astronomy"] .domain-btn:hover img {
+    filter: drop-shadow(0 0 6px var(--accent-glow)) brightness(1.3);
+}
+
+body[data-mode="finance"] .domain-btn:hover img {
+    filter: drop-shadow(0 0 4px var(--accent-glow)) brightness(1.3);
+}
+
+body[data-mode="astronomy"] .domain-btn {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+}
+
+.domain-btn.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+body[data-mode="astronomy"] .domain-btn.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+    text-shadow: none;
+}
+
+.domain-btn:hover:not(.active) {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body[data-mode="astronomy"] .domain-btn:hover:not(.active) {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-btn {
+    padding: 0.625rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+}
+
+body[data-mode="astronomy"] .icon-btn {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+}
+
+body[data-mode="astronomy"] .icon-btn img {
+    filter: drop-shadow(0 0 3px var(--accent-glow)) brightness(1);
+}
+
+body[data-mode="finance"] .icon-btn img {
+    filter: drop-shadow(0 0 2px var(--accent-glow)) brightness(1);
+}
+
+.icon-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-sm);
+}
+
+.icon-btn:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+body[data-mode="astronomy"] .icon-btn:hover {
+    box-shadow: 0 0 10px var(--accent-glow);
+    border-color: var(--accent-primary);
+}
+
+body[data-mode="astronomy"] .icon-btn:hover img {
+    filter: drop-shadow(0 0 6px var(--accent-glow)) brightness(1.3);
+}
+
+body[data-mode="finance"] .icon-btn:hover img {
+    filter: drop-shadow(0 0 4px var(--accent-glow)) brightness(1.3);
+}
+
+/* Professional Sidebar */
+.dashboard-sidebar {
+    width: 280px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-right: 2px solid var(--border-color);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 10;
+    color: var(--text-primary);
+}
+
+body[data-mode="astronomy"] .dashboard-sidebar {
+    border-right: 2px solid var(--accent-primary);
+    box-shadow: inset -10px 0 20px rgba(0, 255, 255, 0.05), var(--shadow-md);
+}
+
+.sidebar-header h2 {
+    font-size: 1.25rem;
+    margin: 0 0 2rem 0;
+    color: var(--accent-primary);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    font-size: 0.9375rem;
+    letter-spacing: 0.15em;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .sidebar-header h2 {
+    text-shadow: 0 0 10px var(--accent-glow);
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+}
+
+.dashboard-group {
+    margin-bottom: 2.5rem;
+}
+
+.group-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .group-title {
+    color: var(--text-dim);
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+.dashboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-link {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    font-size: 0.875rem;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .dashboard-link {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    border-left: 3px solid transparent;
+}
+
+.dashboard-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: var(--accent-primary);
+    border-radius: 0 2px 2px 0;
+    transition: height 0.3s ease;
+}
+
+.dashboard-link:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    transform: translateX(4px);
+    padding-left: 1.5rem;
+}
+
+body[data-mode="astronomy"] .dashboard-link:hover {
+    border-left-color: var(--accent-primary);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+}
+
+.dashboard-link:hover::before {
+    height: 60%;
+}
+
+.dashboard-link.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+    padding-left: 1.5rem;
+    font-weight: 700;
+}
+
+body[data-mode="astronomy"] .dashboard-link.active {
+    background: rgba(0, 255, 255, 0.15);
+    color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.dashboard-link.active::before {
+    height: 100%;
+    background: var(--accent-primary);
+}
+
+.sidebar-upload {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+body[data-mode="astronomy"] .sidebar-upload {
+    border-top: 2px solid var(--border-color);
+    box-shadow: 0 -5px 10px rgba(0, 255, 255, 0.05);
+}
+
+.sidebar-upload h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .sidebar-upload h3 {
+    color: var(--text-primary);
+    text-shadow: 0 0 5px var(--accent-glow);
+    font-family: 'Courier New', monospace;
+}
+
+.upload-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.05em;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+body[data-mode="astronomy"] .upload-btn {
+    background: transparent;
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-glow);
+    font-family: 'Courier New', monospace;
+}
+
+body[data-mode="astronomy"] .upload-btn:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.upload-submit {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.625rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    font-family: inherit;
+}
+
+body[data-mode="astronomy"] .upload-submit {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+}
+
+.upload-submit:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
+}
+
+body[data-mode="astronomy"] .upload-submit:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.upload-status {
+    margin-top: 0.875rem;
+    font-size: 0.8125rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 3px;
+    min-height: 20px;
+    font-weight: 500;
+    font-family: inherit;
+}
+
+/* Professional Main Dashboard Area */
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    background: var(--bg-primary);
+    position: relative;
+    z-index: 10;
+    color: var(--text-primary);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Astronomy Dashboard Backgrounds */
+.dashboard-main.bg-astronomy-overview {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=1920&q=80');
+}
+
+.dashboard-main.bg-astronomy-star-age {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=80');
+}
+
+.dashboard-main.bg-astronomy-clusters {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=1920&q=80');
+}
+
+.dashboard-main.bg-astronomy-anomalies {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=1920&q=80');
+}
+
+.dashboard-main.bg-astronomy-sky-network {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=1920&q=80');
+}
+
+/* Finance Dashboard Backgrounds */
+.dashboard-main.bg-finance-risk {
+    background-image: 
+        linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)),
+        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&q=80');
+}
+
+.dashboard-main.bg-finance-streaming {
+    background-image: 
+        linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)),
+        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80');
+}
+
+.dashboard-main.bg-finance-correlation {
+    background-image: 
+        linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)),
+        url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1920&q=80');
+}
+
+.dashboard-main.bg-finance-portfolio {
+    background-image: 
+        linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)),
+        url('https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1920&q=80');
+}
+
+.dashboard-header {
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+    position: relative;
+    z-index: 20;
+}
+
+body[data-mode="astronomy"] .dashboard-header {
+    border-bottom: 2px solid var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), var(--shadow-sm);
+}
+
+.dashboard-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-family: inherit;
+}
+
+.help-btn {
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
+}
+
+.help-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+body[data-mode="astronomy"] .help-btn:hover {
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.help-btn img {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Help Modal Styles */
+.help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.help-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.help-modal-content {
+    position: relative;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    max-width: 700px;
+    max-height: 80vh;
+    width: 90%;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 10001;
+}
+
+body[data-mode="astronomy"] .help-modal-content {
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+body[data-mode="finance"] .help-modal-content {
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+}
+
+.help-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.help-modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.help-modal-close {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.help-modal-close:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+.help-modal-close img {
+    pointer-events: none;
+}
+
+.help-modal-body {
+    padding: 1.5rem;
+}
+
+.help-section {
+    margin-bottom: 1.5rem;
+}
+
+.help-section:last-child {
+    margin-bottom: 0;
+}
+
+.help-section h4 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.help-section p {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.help-section ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.help-section li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.help-section code {
+    background: var(--bg-secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+    color: var(--accent-primary);
+    display: block;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid var(--border-color);
+    line-height: 1.6;
+}
+
+/* LaTeX Equation Container */
+.equation-container {
+    background: var(--bg-secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--accent-primary);
+    margin: 1rem 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
+body[data-mode="astronomy"] .equation-container {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    background: rgba(0, 20, 30, 0.8);
+}
+
+body[data-mode="finance"] .equation-container {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.equation-container .MathJax {
+    color: var(--accent-primary) !important;
+    font-size: 1.1em !important;
+}
+
+.equation-container .MathJax .math {
+    color: var(--accent-primary) !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+body[data-mode="astronomy"] .dashboard-header h2 {
+    color: var(--accent-primary);
+    text-shadow: 0 0 15px var(--accent-glow);
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+body[data-mode="finance"] .dashboard-header h2 {
+    color: var(--accent-primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 1.625rem;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.action-btn {
+    padding: 0.625rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+body[data-mode="astronomy"] .action-btn {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+}
+
+.action-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-sm);
+}
+
+.action-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+}
+
+.action-btn.active:hover {
+    background: var(--accent-hover, var(--accent-primary));
+    opacity: 0.9;
+}
+
+body[data-mode="astronomy"] .action-btn:hover {
+    box-shadow: 0 0 10px var(--accent-glow);
+    border-color: var(--accent-primary);
+}
+
+/* Global Filter Panel */
+.global-filter-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: start;
+}
+
+/* Responsive filter grid */
+@media (max-width: 640px) {
+    .global-filter-panel {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .global-filter-panel {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .global-filter-panel {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1441px) {
+    .global-filter-panel {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.filter-item label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+    line-height: 1.4;
+}
+
+/* Prevent filter inputs from overlapping */
+.filter-item input,
+.filter-item select {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    flex-shrink: 1;
+    padding: 0.5rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.filter-item input[type="range"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Multi-select dropdowns */
+.filter-item select[multiple] {
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+}
+
+/* Date range inputs */
+.filter-item input[type="date"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    flex: 1 1 auto;
+}
+
+/* Number range inputs */
+.filter-item .number-range-wrapper {
+    display: flex;
+    gap: 0.625rem;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.filter-item .number-range-wrapper input {
+    flex: 1 1 0;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Date range wrapper */
+.filter-item .date-range-wrapper {
+    display: flex;
+    gap: 0.625rem;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.filter-item .date-range-wrapper input {
+    flex: 1 1 0;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Search input wrapper */
+.filter-item .search-wrapper {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-item .search-wrapper input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+}
+
+/* Toggle wrapper */
+.filter-item .toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Slider wrapper */
+.filter-item .slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Animation for messages */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ensure all button images are clickable */
+.action-btn img,
+.icon-btn img,
+.domain-btn img {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Ensure buttons are properly clickable */
+.action-btn,
+.icon-btn,
+.domain-btn {
+    cursor: pointer;
+    user-select: none;
+}
+
+.action-btn:disabled,
+.icon-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Professional Dashboard Grid */
+.dashboard-grid {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Ensure cards are visible over background */
+.dashboard-grid .kpi-card,
+.dashboard-grid .chart-card,
+.dashboard-grid .gauge-card,
+.dashboard-grid .table-card,
+.dashboard-grid .leaderboard-card,
+.dashboard-grid .network-card,
+.dashboard-grid .map-card,
+.dashboard-grid .report-card {
+    background: rgba(5, 5, 15, 0.95);
+    backdrop-filter: blur(15px);
+}
+
+body[data-mode="finance"] .dashboard-grid .kpi-card,
+body[data-mode="finance"] .dashboard-grid .chart-card,
+body[data-mode="finance"] .dashboard-grid .gauge-card,
+body[data-mode="finance"] .dashboard-grid .table-card,
+body[data-mode="finance"] .dashboard-grid .leaderboard-card,
+body[data-mode="finance"] .dashboard-grid .network-card,
+body[data-mode="finance"] .dashboard-grid .map-card,
+body[data-mode="finance"] .dashboard-grid .report-card {
+    background: rgba(28, 33, 40, 0.95);
+    backdrop-filter: blur(15px);
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.grid-row.full-width {
+    grid-template-columns: 1fr;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1400px) {
+    .grid-row {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-sidebar {
+        width: 240px;
+        padding: 1.25rem;
+    }
+    
+    .grid-row {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .top-nav {
+        padding: 0 2rem;
+    }
+    
+    .dashboard-header {
+        padding: 1.75rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        padding: 0 1.5rem;
+        height: 65px;
+    }
+    
+    .app-title {
+        font-size: 1.5rem;
+    }
+    
+    .app-subtitle {
+        display: none;
+    }
+    
+    .dashboard-sidebar {
+        width: 220px;
+        padding: 1rem;
+    }
+    
+    .dashboard-header {
+        padding: 1.5rem;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .dashboard-grid {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .grid-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .domain-btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Professional Scrollbar */
+.dashboard-grid::-webkit-scrollbar,
+.dashboard-sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dashboard-grid::-webkit-scrollbar-track,
+.dashboard-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-grid::-webkit-scrollbar-thumb,
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+body[data-mode="astronomy"] .dashboard-grid::-webkit-scrollbar-thumb,
+body[data-mode="astronomy"] .dashboard-sidebar::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    box-shadow: 0 0 5px var(--accent-glow);
+}
+
+.dashboard-grid::-webkit-scrollbar-thumb:hover,
+.dashboard-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover);
+}
+
+body[data-mode="astronomy"] .dashboard-grid::-webkit-scrollbar-thumb:hover,
+body[data-mode="astronomy"] .dashboard-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Capability + Filter ribbon */
+.capability-banner {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(90deg, rgba(0,255,204,0.06), rgba(0,255,204,0.02)), var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.capability-label {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--text-primary);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+}
+
+.filter-shell {
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+
+.filter-ribbon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: rgba(9, 14, 26, 0.8);
+    border: 1px solid rgba(0, 255, 186, 0.25);
+    border-radius: 10px;
+    padding: 0.65rem 0.9rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.filter-summary {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,255,186,0.3);
+    border-radius: 8px;
+    color: var(--text-primary);
+    min-height: 36px;
+}
+
+.filter-chip__input input,
+.filter-chip__input select {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-toggle-btn {
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,255,186,0.35);
+    background: rgba(0,255,186,0.08);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filter-drawer {
+    position: fixed;
+    top: 80px;
+    right: 1.25rem;
+    width: 360px;
+    max-width: 92vw;
+    background: rgba(6,10,18,0.94);
+    border: 1px solid rgba(0,255,186,0.25);
+    box-shadow: var(--shadow-md);
+    border-radius: 12px;
+    z-index: 2000;
+    padding: 1rem;
+    display: none;
+}
+
+.filter-drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+.filter-tile {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0,255,186,0.2);
+    border-radius: 8px;
+    padding: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.filter-tile label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.filter-tile input,
+.filter-tile select {
+    background: var(--bg-card);
+    border: 1px solid rgba(0,255,186,0.3);
+    color: var(--text-primary);
+    border-radius: 6px;
+    padding: 0.45rem;
+}
+
+.filter-slider {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.filter-toggle {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    border-radius: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.filter-toggle.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+.filter-date-range {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+}
+
+.data-files-panel {
+    margin-top: 1rem;
+    padding: 0.85rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+}
+
+.data-files-panel h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.data-files-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.data-file-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.5rem 0.4rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-file-item .file-name {
+    color: var(--text-primary);
+    font-weight: 650;
+    font-size: 0.9rem;
+}
+
+.data-file-item .file-meta {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.data-file-item.muted {
+    color: var(--text-muted);
+    padding: 0.2rem 0;
+    border: none;
+}
+
+.file-badge {
+    align-self: start;
+    padding: 0.1rem 0.45rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.dashboard-link.disabled {
+    opacity: 0.6;
+    pointer-events: auto;
+    position: relative;
+}
+
+.dashboard-link.disabled::after {
+    content: ' (partial)';
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.placeholder-card {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.placeholder-card .card-body {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .filter-drawer {
+        top: 70px;
+        right: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+    }
+    .filter-ribbon {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

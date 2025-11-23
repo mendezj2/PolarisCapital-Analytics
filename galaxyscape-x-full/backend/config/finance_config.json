@@ -1,0 +1,23 @@
+{
+  "data": {
+    "expected_columns": ["ticker", "close_price", "volume"],
+    "upload_dir": "./uploads/finance",
+    "max_rows": 1000000
+  },
+  "models": {
+    "xgboost_risk": {
+      "features": ["volatility_30d", "beta", "turnover"],
+      "target": "risk_score"
+    },
+    "volatility_lstm": {
+      "sequence_length": 60,
+      "hidden_dim": 128
+    }
+  },
+  "graph": {
+    "correlation_network": {
+      "threshold": 0.7
+    }
+  }
+}
+

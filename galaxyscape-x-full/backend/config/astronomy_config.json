@@ -1,0 +1,23 @@
+{
+  "data": {
+    "expected_columns": ["luminosity", "temperature", "metallicity"],
+    "upload_dir": "./uploads/astronomy",
+    "max_rows": 500000
+  },
+  "models": {
+    "xgboost_age": {
+      "features": ["luminosity", "temperature"],
+      "target": "stellar_age"
+    },
+    "autoencoder": {
+      "embedding_dim": 64
+    }
+  },
+  "graph": {
+    "node2vec": {
+      "walk_length": 80,
+      "num_walks": 10
+    }
+  }
+}
+

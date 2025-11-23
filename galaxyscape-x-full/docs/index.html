@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarisCapital Analytics Dashboard</title>
+    
+    <!-- Google Fonts - Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for LaTeX equation rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <!-- ECharts library for professional charts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- D3.js for network graphs -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./css/theme_astronomy.css" id="theme-astronomy">
+    <link rel="stylesheet" href="./css/theme_finance.css" id="theme-finance" disabled>
+    <!-- Dashboard and component styles -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/components.css">
+</head>
+<body data-mode="astronomy" style="background: var(--bg-primary); color: var(--text-primary);">
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <h1 class="app-title">PolarisCapital Analytics</h1>
+            <span class="app-subtitle">Astronomy + Finance Intelligence Suite</span>
+        </div>
+        <div class="nav-center">
+            <!-- Domain Toggle -->
+            <div class="domain-toggle">
+                <button id="mode-astronomy" class="domain-btn active" data-domain="astronomy">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Astronomy" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"> Astronomy
+                </button>
+                <button id="mode-finance" class="domain-btn" data-domain="finance">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Finance" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"> Finance
+                </button>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="icon-btn" title="Notifications" id="notifications-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/1827/1827340.png" alt="Notifications" style="width: 20px; height: 20px;">
+            </button>
+            <button class="icon-btn" title="Settings" id="settings-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="Settings" style="width: 20px; height: 20px;">
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        <!-- Left Sidebar: Dashboard Selection -->
+        <aside class="dashboard-sidebar" id="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h2>Dashboards</h2>
+            </div>
+            
+            <!-- Astronomy Dashboards -->
+            <div class="dashboard-group" data-domain="astronomy">
+                <h3 class="group-title">Astronomy</h3>
+                <ul class="dashboard-list">
+                    <li><a href="#" data-dashboard="overview" class="dashboard-link active"><span class="dashboard-label">Overview</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="star-explorer" class="dashboard-link"><span class="dashboard-label">Star Explorer</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="star-age" class="dashboard-link"><span class="dashboard-label">Star Age Analysis</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="sky-map" class="dashboard-link"><span class="dashboard-label">Sky Map</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="light-curve" class="dashboard-link"><span class="dashboard-label">Light Curve</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="clusters" class="dashboard-link"><span class="dashboard-label">Cluster Analysis</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="anomalies" class="dashboard-link"><span class="dashboard-label">Anomaly Detection</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="sky-network" class="dashboard-link"><span class="dashboard-label">Sky Network</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="ml-models" class="dashboard-link"><span class="dashboard-label">ML Models & Regression</span><span class="dashboard-indicator-slot"></span></a></li>
+                </ul>
+            </div>
+            
+            <!-- Finance Dashboards -->
+            <div class="dashboard-group" data-domain="finance" style="display: none;">
+                <h3 class="group-title">Finance</h3>
+                <ul class="dashboard-list">
+                    <li><a href="#" data-dashboard="risk" class="dashboard-link"><span class="dashboard-label">Risk Dashboard</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="streaming" class="dashboard-link"><span class="dashboard-label">Streaming Analytics</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="correlation" class="dashboard-link"><span class="dashboard-label">Correlation Network</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="portfolio" class="dashboard-link"><span class="dashboard-label">Portfolio Analysis</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="compliance" class="dashboard-link"><span class="dashboard-label">Compliance & Audit</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="stock-explorer" class="dashboard-link"><span class="dashboard-label">Stock Explorer</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="future-outcomes" class="dashboard-link"><span class="dashboard-label">Future Outcomes</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="marketing-analytics" class="dashboard-link"><span class="dashboard-label">Marketing Analytics</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="ml-models" class="dashboard-link"><span class="dashboard-label">ML Models & Regression</span><span class="dashboard-indicator-slot"></span></a></li>
+                    <li><a href="#" data-dashboard="game-theory" class="dashboard-link"><span class="dashboard-label">Game Theory Analysis</span><span class="dashboard-indicator-slot"></span></a></li>
+                </ul>
+            </div>
+            
+            <!-- Upload Section -->
+            <div class="sidebar-upload">
+                <h3><img src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png" alt="Upload" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Data Upload</h3>
+                <form id="upload-form" enctype="multipart/form-data">
+                    <input type="file" id="file-input" accept=".csv" multiple style="display: none;">
+                    <button type="button" id="upload-trigger" class="upload-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png" alt="Upload" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Upload CSV
+                    </button>
+                    <button type="submit" class="upload-submit" style="display: none;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Process" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Process Data
+                    </button>
+                </form>
+                <div id="upload-status" class="upload-status"></div>
+                
+                <!-- Download Sample Data -->
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    <h3 style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 600;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Download" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Sample Data
+                    </h3>
+                    <button type="button" id="download-astro-btn" class="upload-btn" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); margin-bottom: 0.5rem;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Astronomy" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Download Astronomy Data
+                    </button>
+                    <button type="button" id="download-finance-btn" class="upload-btn" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color);">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Finance" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;"> Download Finance Data
+                    </button>
+                </div>
+                <div id="data-files-panel" class="data-files-panel">
+                    <h4>Loaded Files</h4>
+                    <ul id="data-files-list" class="data-files-list"></ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Area -->
+        <main class="dashboard-main">
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div class="dashboard-title-wrapper">
+                    <h2 id="dashboard-title">Astronomy Overview</h2>
+                    <button class="help-btn" id="dashboard-help-btn" title="Dashboard Information">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828883.png" alt="Help" style="width: 18px; height: 18px;">
+                    </button>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="action-btn" title="Refresh Data" id="refresh-dashboard-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828840.png" alt="Refresh" style="width: 18px; height: 18px;">
+                    </button>
+                    <button class="action-btn" title="Generate Report" id="generate-report-btn" style="display: none;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report" style="width: 18px; height: 18px;">
+                    </button>
+                    <button class="action-btn" title="Filters" id="toggle-filters-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828841.png" alt="Filter" style="width: 18px; height: 18px;">
+                    </button>
+                </div>
+            </header>
+
+            <div id="capability-banner" class="capability-banner" style="display:none;"></div>
+            <div class="filter-shell">
+                <div id="filter-ribbon" class="filter-ribbon"></div>
+                <div id="filter-drawer" class="filter-drawer" style="display:none;"></div>
+            </div>
+
+            <!-- Dashboard Grid Container -->
+            <div class="dashboard-grid" id="dashboard-grid">
+                <!-- Dashboard panels will be dynamically inserted here by layout_manager.js -->
+                <div class="grid-row">
+                    <div class="kpi-card" style="text-align: center; padding: 3rem;">
+                        <div class="card-body">
+                            <p style="color: var(--text-muted);">Loading dashboard...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Dashboard configurations must load first -->
+    <script src="./js/github_pages_config.js"></script>
+    <script src="./js/astronomy_dashboards.js"></script>
+    <script src="./js/finance_dashboards.js"></script>
+    <!-- Graph utilities -->
+    <script src="./js/components/graph_enhancer.js"></script>
+    <!-- Component classes -->
+    <script src="./js/components/kpi_card.js"></script>
+    <script src="./js/components/gauge_card.js"></script>
+    <script src="./js/components/bar_chart.js"></script>
+    <script src="./js/components/pie_chart.js"></script>
+    <script src="./js/components/line_chart.js"></script>
+    <script src="./js/components/data_table.js"></script>
+    <script src="./js/components/leaderboard.js"></script>
+    <script src="./js/components/network_graph.js"></script>
+    <script src="./js/components/map_card.js"></script>
+    <script src="./js/components/filter_panel.js"></script>
+    <script src="./js/components/streaming_chart.js"></script>
+    <script src="./js/components/portfolio_input.js"></script>
+    <script src="./js/components/stock_symbol_input.js"></script>
+    <script src="./js/components/dashboard_help.js"></script>
+    <script src="./js/components/component_help.js"></script>
+    <script src="./js/components/explain_panel.js"></script>
+    <script src="./js/components/filter_panel_v2.js"></script>
+    <!-- Layout manager (depends on dashboard configs and components) -->
+    <script src="./js/layout_manager.js"></script>
+    <script src="./js/components/dashboard_files.js"></script>
+    <!-- Main app controller -->
+    <script src="./js/main.js"></script>
+</body>
+</html>

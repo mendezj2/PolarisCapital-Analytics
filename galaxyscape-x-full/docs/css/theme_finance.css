@@ -1,0 +1,132 @@
+/* Finance Theme - Professional Financial Terminal Design */
+/* Inspired by Bloomberg Terminal, TradingView, and professional financial platforms */
+/* Money/Market themed colors: Green (gains), Red (losses), Gold (wealth), Blue (markets) */
+
+:root[data-mode="finance"], body[data-mode="finance"] {
+    /* Financial Market Color Palette */
+    --bg-primary: #0a0e14;
+    --bg-secondary: #131820;
+    --bg-card: #1a1f2e;
+    --bg-hover: rgba(34, 197, 94, 0.12);
+    --bg-gradient: linear-gradient(135deg, #0a0e14 0%, #131820 50%, #0f1419 100%);
+    
+    --text-primary: #f0f9ff;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    
+    /* Market Colors - Glowy Green */
+    --accent-primary: #00ff88;  /* Bright green - gains, positive */
+    --accent-secondary: #00ffaa; /* Lighter green */
+    --accent-tertiary: #00cc88;  /* Medium green */
+    --accent-glow: rgba(0, 255, 136, 0.6);
+    --accent-gradient: linear-gradient(135deg, #00ff88 0%, #00ffaa 50%, #00cc88 100%);
+    
+    /* Money/Wealth Colors */
+    --money-gold: #fbbf24;
+    --money-yellow: #fcd34d;
+    --wealth-color: #eab308;
+    
+    /* Market Status Colors */
+    --market-up: #22c55e;      /* Green for gains */
+    --market-down: #ef4444;    /* Red for losses */
+    --market-neutral: #94a3b8; /* Gray for neutral */
+    --market-volatile: #f59e0b; /* Amber for volatility */
+    
+    --border-color: rgba(0, 255, 136, 0.3);
+    --border-hover: rgba(0, 255, 136, 0.6);
+    --border-bright: rgba(0, 255, 136, 0.8);
+    
+    --success: #22c55e;  /* Green - profits */
+    --warning: #f59e0b;  /* Amber - caution */
+    --error: #ef4444;     /* Red - losses */
+    --info: #3b82f6;      /* Blue - information */
+    
+    /* Financial Chart Colors */
+    --chart-color-1: #22c55e;  /* Primary green */
+    --chart-color-2: #16a34a;  /* Dark green */
+    --chart-color-3: #fbbf24;  /* Gold */
+    --chart-color-4: #3b82f6;  /* Blue */
+    --chart-color-5: #8b5cf6;  /* Purple */
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 255, 136, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 136, 0.4);
+    --shadow-glow: 0 0 25px rgba(0, 255, 136, 0.5);
+    --shadow-glow-strong: 0 0 40px rgba(0, 255, 136, 0.7);
+}
+
+body[data-mode="finance"] {
+    background: var(--bg-primary);
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 255, 136, 0.03) 1px, rgba(0, 255, 136, 0.03) 2px),
+        var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: inset 0 0 100px rgba(0, 255, 136, 0.05);
+}
+
+/* Subtle financial grid pattern */
+body[data-mode="finance"]::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 255, 136, 0.02) 40px, rgba(0, 255, 136, 0.02) 41px),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 255, 136, 0.02) 40px, rgba(0, 255, 136, 0.02) 41px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+/* Professional financial typography */
+body[data-mode="finance"] {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* Number formatting for financial data */
+body[data-mode="finance"] .kpi-value,
+body[data-mode="finance"] .price,
+body[data-mode="finance"] .value,
+body[data-mode="finance"] .amount {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+/* Financial color coding */
+body[data-mode="finance"] .price-up,
+body[data-mode="finance"] .gain,
+body[data-mode="finance"] .positive {
+    color: var(--market-up);
+}
+
+body[data-mode="finance"] .price-down,
+body[data-mode="finance"] .loss,
+body[data-mode="finance"] .negative {
+    color: var(--market-down);
+}
+
+body[data-mode="finance"] .price-neutral,
+body[data-mode="finance"] .neutral {
+    color: var(--market-neutral);
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}

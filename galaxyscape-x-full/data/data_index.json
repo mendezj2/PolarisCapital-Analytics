@@ -1,0 +1,82 @@
+{
+  "astronomy": {
+    "overview": [
+      "star_explorer.csv",
+      "nasa_exoplanets.csv"
+    ],
+    "star-explorer": [
+      "star_explorer.csv"
+    ],
+    "star-age": [
+      "star_explorer.csv",
+      "ml_models.csv"
+    ],
+    "sky-map": [
+      "sky_map.csv",
+      "star_explorer.csv"
+    ],
+    "light-curve": [
+      "star_explorer.csv"
+    ],
+    "clusters": [
+      "cluster_analysis.csv",
+      "star_explorer.csv"
+    ],
+    "anomalies": [
+      "anomaly_detection.csv",
+      "star_explorer.csv"
+    ],
+    "sky-network": [
+      "sky_map.csv",
+      "star_explorer.csv"
+    ],
+    "ml-models": [
+      "ml_models.csv",
+      "star_explorer.csv"
+    ]
+  },
+  "finance": {
+    "risk": [
+      "risk_dashboard.csv",
+      "market_data.csv"
+    ],
+    "streaming": [
+      "market_data.csv",
+      "risk_dashboard.csv"
+    ],
+    "correlation": [
+      "correlation_network.csv",
+      "market_data.csv"
+    ],
+    "portfolio": [
+      "market_data.csv"
+    ],
+    "compliance": [
+      "risk_dashboard.csv",
+      "market_data.csv"
+    ],
+    "stock-explorer": [
+      "stock_explorer.csv",
+      "market_data.csv"
+    ],
+    "future-outcomes": [
+      "future_outcomes.csv",
+      "market_data.csv"
+    ],
+    "marketing-analytics": [
+      "marketing_signage.csv",
+      "marketing_omni_channel.csv"
+    ],
+    "ml-models": [
+      "market_data.csv"
+    ],
+    "game-theory": [
+      "game_theory.csv",
+      "market_data.csv"
+    ]
+  },
+  "defaults": {
+    "astronomy": "data/raw/astronomy/default_astronomy_dataset.csv",
+    "finance": "data/raw/finance/default_finance_dataset.csv"
+  }
+}

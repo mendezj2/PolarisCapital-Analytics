@@ -1,0 +1,345 @@
+{
+  "astronomy": {
+    "overview": {
+      "dashboard": "overview",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/dashboard/kpi": {
+          "success": true,
+          "has_data": true,
+          "response_size": 54
+        },
+        "/api/astronomy/dashboard/trends": {
+          "success": true,
+          "has_data": true,
+          "response_size": 402
+        }
+      }
+    },
+    "star-explorer": {
+      "dashboard": "star-explorer",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/color_period": {
+          "success": true,
+          "has_data": true,
+          "response_size": 8529
+        },
+        "/api/astronomy/star_scatter": {
+          "success": true,
+          "has_data": true,
+          "response_size": 195203
+        }
+      }
+    },
+    "star-age": {
+      "dashboard": "star-age",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/star_age": {
+          "success": true,
+          "has_data": true,
+          "response_size": 4067
+        }
+      }
+    },
+    "sky-map": {
+      "dashboard": "sky-map",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/sky_map": {
+          "success": true,
+          "has_data": true,
+          "response_size": 36928
+        }
+      }
+    },
+    "light-curve": {
+      "dashboard": "light-curve",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/star_table": {
+          "success": true,
+          "has_data": true,
+          "response_size": 126442
+        }
+      }
+    },
+    "clusters": {
+      "dashboard": "clusters",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/cluster": {
+          "success": true,
+          "has_data": true,
+          "response_size": 184682
+        }
+      }
+    },
+    "anomalies": {
+      "dashboard": "anomalies",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/anomaly": {
+          "success": true,
+          "has_data": true,
+          "response_size": 35632
+        }
+      }
+    },
+    "sky-network": {
+      "dashboard": "sky-network",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/embedding": {
+          "success": true,
+          "has_data": true,
+          "response_size": 32843
+        }
+      }
+    },
+    "ml-models": {
+      "dashboard": "ml-models",
+      "domain": "astronomy",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_astronomy_dataset.csv"
+      },
+      "endpoints": {
+        "/api/astronomy/color_period": {
+          "success": true,
+          "has_data": true,
+          "response_size": 8535
+        },
+        "/api/astronomy/star_age": {
+          "success": true,
+          "has_data": true,
+          "response_size": 4079
+        }
+      }
+    }
+  },
+  "finance": {
+    "risk": {
+      "dashboard": "risk",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/risk_kpis": {
+          "success": true,
+          "has_data": true,
+          "response_size": 107
+        },
+        "/api/finance/risk": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1125
+        }
+      }
+    },
+    "streaming": {
+      "dashboard": "streaming",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/streaming": {
+          "success": true,
+          "has_data": true,
+          "response_size": 3848
+        }
+      }
+    },
+    "correlation": {
+      "dashboard": "correlation",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/correlation_network": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1507
+        }
+      }
+    },
+    "portfolio": {
+      "dashboard": "portfolio",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/portfolio_stats": {
+          "success": true,
+          "has_data": true,
+          "response_size": 3340
+        }
+      }
+    },
+    "compliance": {
+      "dashboard": "compliance",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/risk": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1125
+        }
+      }
+    },
+    "stock-explorer": {
+      "dashboard": "stock-explorer",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/stock_explore": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1833
+        }
+      }
+    },
+    "future-outcomes": {
+      "dashboard": "future-outcomes",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/future_outcomes": {
+          "success": true,
+          "has_data": true,
+          "response_size": 25646
+        }
+      }
+    },
+    "marketing-analytics": {
+      "dashboard": "marketing-analytics",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/marketing/signage": {
+          "success": true,
+          "has_data": true,
+          "response_size": 943
+        },
+        "/api/finance/marketing/omni_channel": {
+          "success": true,
+          "has_data": true,
+          "response_size": 859
+        }
+      }
+    },
+    "ml-models": {
+      "dashboard": "ml-models",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/risk": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1125
+        },
+        "/api/finance/correlation_network": {
+          "success": true,
+          "has_data": true,
+          "response_size": 1507
+        }
+      }
+    },
+    "game-theory": {
+      "dashboard": "game-theory",
+      "domain": "finance",
+      "file_listing": {
+        "success": true,
+        "files_count": 0,
+        "active_file": "default_finance_dataset.csv"
+      },
+      "endpoints": {
+        "/api/finance/game-theory/nash-equilibrium": {
+          "success": true,
+          "has_data": true,
+          "response_size": 328
+        },
+        "/api/finance/game-theory/shapley-value": {
+          "success": true,
+          "has_data": true,
+          "response_size": 296
+        }
+      }
+    }
+  }
+}
